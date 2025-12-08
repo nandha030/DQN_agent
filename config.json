@@ -1,0 +1,15 @@
+{
+	"auths": {},
+	"currentContext": "desktop-linux",
+	"plugins": {
+		"debug": {
+			"hooks": "exec"
+		},
+		"scout": {
+			"hooks": "pull,buildx build"
+		}
+	},
+	"features": {
+		"hooks": "true"
+	}
+}

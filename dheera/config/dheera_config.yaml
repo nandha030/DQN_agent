@@ -1,0 +1,55 @@
+agent:
+  name: "Dheera"
+  version: "0.1.0"
+
+dqn:
+  state_dim: 16
+  hidden_dim: 64
+  gamma: 0.99
+  lr: 0.001
+  batch_size: 32
+  buffer_capacity: 50000
+  epsilon_start: 0.8
+  epsilon_end: 0.05
+  epsilon_decay_steps: 200  # Much faster for testing!
+  target_update_freq: 100
+
+curiosity:
+  enabled: true
+  coefficient: 0.1
+
+dopamine:
+  positive_feedback_reward: 1.0
+  negative_feedback_reward: -0.5
+  neutral_reward: 0.0
+
+slm:
+  provider: "ollama"
+  model: "phi3:mini"
+  base_url: "http://localhost:11434"
+  temperature: 0.5  # Lower = more focused
+  max_tokens: 512   # Shorter responses
+
+actions:
+  - id: 0
+    name: "ASK_CLARIFYING_QUESTION"
+    description: "Ask user for more details"
+  - id: 1
+    name: "PROVIDE_DETAILED_EXPLANATION"
+    description: "Give thorough response"
+  - id: 2
+    name: "GIVE_CONCISE_SUMMARY"
+    description: "Short, direct answer"
+  - id: 3
+    name: "PROPOSE_STEP_BY_STEP_PLAN"
+    description: "Break down into steps"
+  - id: 4
+    name: "CALL_TOOL"
+    description: "Invoke external tool"
+  - id: 5
+    name: "REFLECT_AND_REASON"
+    description: "Think step-by-step"
+
+policy:
+  safety_enabled: true
+  max_tool_calls_per_turn: 3
