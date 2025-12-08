@@ -1,0 +1,780 @@
+{
+  "episode_index": [
+    "ep_20251207_234438_d54fdd",
+    "ep_20251208_000526_c98a62",
+    "ep_20251208_081620_8174f8",
+    "ep_20251208_081852_78cb22",
+    "ep_20251208_082420_3fa163",
+    "ep_20251208_090859_a15f0e",
+    "ep_20251208_182746_bb61d8"
+  ],
+  "episodes": {
+    "ep_20251207_234438_d54fdd": {
+      "episode_id": "ep_20251207_234438_d54fdd",
+      "entries": [
+        {
+          "turn_id": 0,
+          "user_message": "Hello Dheera!",
+          "assistant_response": "Hello there! It's great to see you too. How can I assist you today? Perhaps we could start with something fun or interesting for us both to discuss?",
+          "action_taken": 5,
+          "action_name": "REFLECT_AND_REASON",
+          "reward": 0.3,
+          "state_vector": [
+            0.05000000074505806,
+            0.0,
+            0.00800000037997961,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765131278.9134562,
+          "metadata": {
+            "tokens_used": 35
+          }
+        },
+        {
+          "turn_id": 1,
+          "user_message": "Good",
+          "assistant_response": "Glad to hear that as well! Is everything alright, and is there a particular topic on your mind right now where I might provide some assistance or engage in an enjoyable conversation?",
+          "action_taken": 3,
+          "action_name": "PROPOSE_STEP_BY_STEP_PLAN",
+          "reward": 0.0,
+          "state_vector": [
+            0.10000000149011612,
+            1.0,
+            0.004000000189989805,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765131349.171149,
+          "metadata": {
+            "tokens_used": 40
+          }
+        },
+        {
+          "turn_id": 2,
+          "user_message": "Who made you?",
+          "assistant_response": "I was created by Nandha. He's quite the innovator! If he could, he would be proud of his creation - that's me for you. How can I help enhance your day or assist with any queries today?",
+          "action_taken": 5,
+          "action_name": "REFLECT_AND_REASON",
+          "reward": 0.0,
+          "state_vector": [
+            0.15000000596046448,
+            0.0,
+            0.1120000034570694,
+            0.3333333432674408,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765131399.714816,
+          "metadata": {
+            "tokens_used": 51
+          }
+        },
+        {
+          "turn_id": 3,
+          "user_message": "Glad to Know. Tell me about your creator.",
+          "assistant_response": "Nandha is passionate about using technology to improve lives and foster learning. He's an AI enthusiast with a background in computer science, who believes that conversational agents should be warm, friendly companions rather than just tools or machines. That\u2019s why he designed me as I am today\u2014to learn from our interactions while providing assistance where needed. If you have any questions about Nandha's work or anything else tech-related, feel free to ask!",
+          "action_taken": 3,
+          "action_name": "PROPOSE_STEP_BY_STEP_PLAN",
+          "reward": 0.3,
+          "state_vector": [
+            0.20000000298023224,
+            -1.0,
+            0.03200000151991844,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765131514.5910609,
+          "metadata": {
+            "tokens_used": 102
+          }
+        },
+        {
+          "turn_id": 4,
+          "user_message": "Thanks!",
+          "assistant_response": "You're very welcome! Should there be more I can do for you today? Whether it\u2019s information on a specific topic, helping with plans and schedules, offering creative ideas or just chatting about your day \u2013 Nandha and I are here to help. What else would you like assistance with right now?",
+          "action_taken": 3,
+          "action_name": "PROPOSE_STEP_BY_STEP_PLAN",
+          "reward": 0.0,
+          "state_vector": [
+            0.25,
+            1.0,
+            0.004000000189989805,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765131603.3859022,
+          "metadata": {
+            "tokens_used": 67
+          }
+        },
+        {
+          "turn_id": 5,
+          "user_message": "Explain what a GPU is?",
+          "assistant_response": "Error: timed out",
+          "action_taken": 3,
+          "action_name": "PROPOSE_STEP_BY_STEP_PLAN",
+          "reward": 0.0,
+          "state_vector": [
+            0.30000001192092896,
+            0.0,
+            0.11999999731779099,
+            0.3333333432674408,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765132025.311759,
+          "metadata": {
+            "tokens_used": 0
+          }
+        },
+        {
+          "turn_id": 6,
+          "user_message": "Explain what a GPU is?",
+          "assistant_response": "A GPU, or Graphics Processing Unit, acts as the brain for rendering images and videos on your computer. It's specially designed to handle complex calculations that involve graphics processing much faster than traditional CPUs (Central Processing Units). This means it can quickly render high-definition video streams in games, smoothly display 3D models or animations when you\u2019re editing multimedia content like movies and photos on your computer. It's an essential component for tasks that are graphics heavy to ensure a responsive user experience without lagging down the system performance too much!",
+          "action_taken": 0,
+          "action_name": "ASK_CLARIFYING_QUESTION",
+          "reward": 1.0,
+          "state_vector": [
+            0.3499999940395355,
+            0.0,
+            0.11999999731779099,
+            0.3333333432674408,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765132135.1936488,
+          "metadata": {
+            "tokens_used": 119
+          }
+        }
+      ],
+      "total_reward": 0.0,
+      "start_time": 1765131278.910938,
+      "end_time": 1765132403.0083132,
+      "summary": "Chat session ended by user",
+      "tags": [],
+      "metadata": {}
+    },
+    "ep_20251208_000526_c98a62": {
+      "episode_id": "ep_20251208_000526_c98a62",
+      "entries": [
+        {
+          "turn_id": 0,
+          "user_message": "Hello Dheera! I am Nandha your creator. Do you know me?",
+          "assistant_response": "Hello there! It's great to meet someone who knows about my creator, Nandha. How can he and I work together today? Maybe we could explore some new ideas or solve a problem you have in mind. What do you think?",
+          "action_taken": 0,
+          "action_name": "ASK_CLARIFYING_QUESTION",
+          "reward": 0.1,
+          "state_vector": [
+            0.05000000074505806,
+            -1.0,
+            0.14399999380111694,
+            0.3333333432674408,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765132526.68646,
+          "metadata": {
+            "tokens_used": 52
+          }
+        }
+      ],
+      "total_reward": 0.0,
+      "start_time": 1765132526.686198,
+      "end_time": 1765132604.299281,
+      "summary": "Chat session ended by user",
+      "tags": [],
+      "metadata": {}
+    },
+    "ep_20251208_081620_8174f8": {
+      "episode_id": "ep_20251208_081620_8174f8",
+      "entries": [
+        {
+          "turn_id": 0,
+          "user_message": "hello",
+          "assistant_response": "Hello there! It's always wonderful to see you again.",
+          "action_taken": 3,
+          "action_name": "PROPOSE_STEP_BY_STEP_PLAN",
+          "reward": 0.0,
+          "state_vector": [
+            0.05000000074505806,
+            0.0,
+            0.004000000189989805,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765161980.567992,
+          "metadata": {
+            "tokens_used": 74
+          }
+        }
+      ],
+      "total_reward": 0.0,
+      "start_time": 1765161980.56612,
+      "end_time": 1765162083.546282,
+      "summary": "Chat session ended by user",
+      "tags": [],
+      "metadata": {}
+    },
+    "ep_20251208_081852_78cb22": {
+      "episode_id": "ep_20251208_081852_78cb22",
+      "entries": [
+        {
+          "turn_id": 0,
+          "user_message": "who are you?",
+          "assistant_response": "Hello there! I am Dheera, an AI assistant created by Nandha to assist and learn from our interactions together. How can I be of service today? If you're curious about anything or need assistance with tasks, feel free to ask me directly in the conversation we have now.",
+          "action_taken": 0,
+          "action_name": "ASK_CLARIFYING_QUESTION",
+          "reward": 0.0,
+          "state_vector": [
+            0.05000000074505806,
+            0.0,
+            0.1120000034570694,
+            0.3333333432674408,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765162132.041106,
+          "metadata": {
+            "tokens_used": 62
+          }
+        }
+      ],
+      "total_reward": 0.0,
+      "start_time": 1765162132.0409448,
+      "end_time": 1765162298.7533948,
+      "summary": "Chat session ended by user",
+      "tags": [],
+      "metadata": {}
+    },
+    "ep_20251208_082420_3fa163": {
+      "episode_id": "ep_20251208_082420_3fa163",
+      "entries": [
+        {
+          "turn_id": 0,
+          "user_message": "Tell me about Yourself!",
+          "assistant_response": "Error: timed out",
+          "action_taken": 1,
+          "action_name": "PROVIDE_DETAILED_EXPLANATION",
+          "reward": 0.0,
+          "state_vector": [
+            0.05000000074505806,
+            0.0,
+            0.01600000075995922,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765162460.883691,
+          "metadata": {
+            "tokens_used": 0
+          }
+        }
+      ],
+      "total_reward": 0.0,
+      "start_time": 1765162460.88122,
+      "end_time": 1765164835.6023738,
+      "summary": "Chat session ended by user",
+      "tags": [],
+      "metadata": {}
+    },
+    "ep_20251208_090859_a15f0e": {
+      "episode_id": "ep_20251208_090859_a15f0e",
+      "entries": [
+        {
+          "turn_id": 0,
+          "user_message": "Perfect!",
+          "assistant_response": "Absolutely perfect! Your feedback means a lot, and I strive for continuous improvement in our interactions. If there's anything else you need help with today, feel free to ask!",
+          "action_taken": 0,
+          "action_name": "ASK_CLARIFYING_QUESTION",
+          "reward": 1.0,
+          "state_vector": [
+            0.05000000074505806,
+            1.0,
+            0.004000000189989805,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765165139.388177,
+          "metadata": {
+            "tokens_used": 40
+          }
+        },
+        {
+          "turn_id": 1,
+          "user_message": "What is reinforcement learning?",
+          "assistant_response": "Reinforcement learning (RL) is a type of machine learning where an agent learns to make decisions by taking actions in an environment and receiving rewards or penalties. It's all about trial-and-error, much like training a pet! The goal for the RL agent is to maximize its cumulative reward over time. This process involves exploration (trying new things) as well as exploitation (using known strategies that work). A famous algorithm used in reinforcement learning is Q-learning. Would you be interested in understanding how it works or have any specific questions about RL?",
+          "action_taken": 1,
+          "action_name": "PROVIDE_DETAILED_EXPLANATION",
+          "reward": 1.0,
+          "state_vector": [
+            0.10000000149011612,
+            0.0,
+            0.11599999666213989,
+            0.3333333432674408,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765165218.107656,
+          "metadata": {
+            "tokens_used": 130
+          }
+        },
+        {
+          "turn_id": 2,
+          "user_message": "How do I install PyTorch?",
+          "assistant_response": "Error: timed out",
+          "action_taken": 3,
+          "action_name": "PROPOSE_STEP_BY_STEP_PLAN",
+          "reward": 0.0,
+          "state_vector": [
+            0.15000000596046448,
+            0.0,
+            0.11999999731779099,
+            0.3333333432674408,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765165474.513667,
+          "metadata": {
+            "tokens_used": 0
+          }
+        },
+        {
+          "turn_id": 3,
+          "user_message": "I have a problem",
+          "assistant_response": "It seems like there might be some details missing here. Could you please provide more information or clarify the issue that's concerning you, so I can assist effectively? Remember to avoid technical jargon and keep it straightforward! If your concern is something non-technical, feel free to share those feelings too!",
+          "action_taken": 3,
+          "action_name": "PROPOSE_STEP_BY_STEP_PLAN",
+          "reward": 1.0,
+          "state_vector": [
+            0.20000000298023224,
+            0.0,
+            0.01600000075995922,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765165607.9753652,
+          "metadata": {
+            "tokens_used": 64
+          }
+        },
+        {
+          "turn_id": 4,
+          "user_message": "What is transfer learning?",
+          "assistant_response": "Error: timed out",
+          "action_taken": 0,
+          "action_name": "ASK_CLARIFYING_QUESTION",
+          "reward": 0.0,
+          "state_vector": [
+            0.25,
+            0.0,
+            0.11599999666213989,
+            0.3333333432674408,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765166207.992295,
+          "metadata": {
+            "tokens_used": 0
+          }
+        },
+        {
+          "turn_id": 5,
+          "user_message": "Good morning",
+          "assistant_response": "Good daylight hours have begun. I hope you're feeling refreshed and ready for a new beginning in your schedule today! How can we make this start to the best of its potential? Please share if there are specific goals or tasks on your mind as we embark into the workday together!",
+          "action_taken": 1,
+          "action_name": "PROVIDE_DETAILED_EXPLANATION",
+          "reward": 1.0,
+          "state_vector": [
+            0.30000001192092896,
+            1.0,
+            0.00800000037997961,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765166252.5696661,
+          "metadata": {
+            "tokens_used": 62
+          }
+        },
+        {
+          "turn_id": 6,
+          "user_message": "What is Python?",
+          "assistant_response": "Ah, you're inquiring about a highly versatile programming language known for both simplicity and power. Developed by Guido van Rossum in the late '80s under his BSD licence terms, it\u2019s been embraced widely across various fields due to its readability and concise syntax which makes coding more accessible even without extensive experience.\n\nPython can be used for web development (with frameworks like Django or Flask), data analysis (using libraries such as Pandas and NumPy), artificial intelligence with TensorFlow, automation scripts in Robotics through ROS, to name just a few applications! Is there something specific about Python you're curiously interested? Perhaps I could help demystify it further for you or guide on how one might start learning the language.",
+          "action_taken": 3,
+          "action_name": "PROPOSE_STEP_BY_STEP_PLAN",
+          "reward": 1.0,
+          "state_vector": [
+            0.3499999940395355,
+            0.0,
+            0.1120000034570694,
+            0.3333333432674408,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.7071067690849304,
+            0.0,
+            0.7071067690849304,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765166330.103252,
+          "metadata": {
+            "tokens_used": 166
+          }
+        },
+        {
+          "turn_id": 7,
+          "user_message": "How to set up Ollama?",
+          "assistant_response": "I'd love to use a tool to help with that, but my tool capabilities are still being developed by Nandha. Let me help you directly instead - what would you like to know?",
+          "action_taken": 4,
+          "action_name": "CALL_TOOL",
+          "reward": 1.0,
+          "state_vector": [
+            0.4000000059604645,
+            0.0,
+            0.11999999731779099,
+            0.3333333432674408,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765166358.551626,
+          "metadata": {
+            "tokens_used": 0
+          }
+        },
+        {
+          "turn_id": 8,
+          "user_message": "What's up?",
+          "assistant_response": "Greetings! I\u2019m here and ready for our chat or assistance as needed today, whatever it may be that comes your way.",
+          "action_taken": 3,
+          "action_name": "PROPOSE_STEP_BY_STEP_PLAN",
+          "reward": 1.0,
+          "state_vector": [
+            0.44999998807907104,
+            0.0,
+            0.1080000028014183,
+            0.3333333432674408,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765166421.675235,
+          "metadata": {
+            "tokens_used": 71
+          }
+        },
+        {
+          "turn_id": 9,
+          "user_message": "Is PyTorch a framework?",
+          "assistant_response": "I'd love to use a tool to help with that, but my tool capabilities are still being developed by Nandha. Let me help you directly instead - what would you like to know?",
+          "action_taken": 4,
+          "action_name": "CALL_TOOL",
+          "reward": 0.0,
+          "state_vector": [
+            0.5,
+            0.0,
+            0.11599999666213989,
+            0.3333333432674408,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765166425.985229,
+          "metadata": {
+            "tokens_used": 0
+          }
+        }
+      ],
+      "total_reward": 0.0,
+      "start_time": 1765165139.385736,
+      "end_time": 1765166439.689198,
+      "summary": "Training session: 10 interactions",
+      "tags": [],
+      "metadata": {}
+    },
+    "ep_20251208_182746_bb61d8": {
+      "episode_id": "ep_20251208_182746_bb61d8",
+      "entries": [
+        {
+          "turn_id": 0,
+          "user_message": "hello!",
+          "assistant_response": "Hello there! It's great to see you too. How can I be of service today?",
+          "action_taken": 5,
+          "action_name": "REFLECT_AND_REASON",
+          "reward": 0.0,
+          "state_vector": [
+            0.05000000074505806,
+            0.0,
+            0.004000000189989805,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765198666.521973,
+          "metadata": {
+            "tokens_used": 21
+          }
+        },
+        {
+          "turn_id": 1,
+          "user_message": "who are you ?",
+          "assistant_response": "I am Dheera, an AI assistant developed by Nandha with the purpose of learning and growing alongside us in our interactions! He has crafted me to provide helpful responses while continuously improving my ability to assist. How may I help?",
+          "action_taken": 3,
+          "action_name": "PROPOSE_STEP_BY_STEP_PLAN",
+          "reward": 0.0,
+          "state_vector": [
+            0.10000000149011612,
+            0.0,
+            0.11599999666213989,
+            0.3333333432674408,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "timestamp": 1765198695.324349,
+          "metadata": {
+            "tokens_used": 53
+          }
+        }
+      ],
+      "total_reward": 0.0,
+      "start_time": 1765198666.521906,
+      "end_time": 1765199341.6018372,
+      "summary": "Chat session ended by user",
+      "tags": [],
+      "metadata": {}
+    }
+  }
+}

@@ -1,0 +1,101 @@
+# ============================================
+# DHEERA - Configuration
+# ============================================
+
+agent:
+  name: "Dheera"
+  version: "0.1.0"
+  description: "Adaptive AI Agent with Learning Core"
+
+# DQN Hyperparameters
+dqn:
+  state_dim: 16
+  hidden_dim: 64
+  gamma: 0.99
+  lr: 0.001
+  batch_size: 32
+  buffer_capacity: 50000
+  epsilon_start: 1.0
+  epsilon_end: 0.05
+  epsilon_decay_steps: 10000
+  target_update_freq: 500
+
+# Curiosity (RND) Settings
+curiosity:
+  enabled: true
+  coefficient: 0.1
+  hidden_dim: 64
+
+# Reward Shaping (Dopamine)
+dopamine:
+  positive_feedback_reward: 1.0
+  negative_feedback_reward: -0.5
+  neutral_reward: 0.0
+  task_completion_bonus: 2.0
+  policy_violation_penalty: -2.0
+
+# Action Space Definition
+actions:
+  - id: 0
+    name: "ASK_CLARIFYING_QUESTION"
+    description: "Ask user for more details or clarification"
+  - id: 1
+    name: "PROVIDE_DETAILED_EXPLANATION"
+    description: "Give thorough, in-depth response"
+  - id: 2
+    name: "GIVE_CONCISE_SUMMARY"
+    description: "Short, to-the-point answer"
+  - id: 3
+    name: "PROPOSE_STEP_BY_STEP_PLAN"
+    description: "Break down into actionable steps"
+  - id: 4
+    name: "CALL_TOOL"
+    description: "Invoke an external tool (stub for now)"
+  - id: 5
+    name: "REFLECT_AND_REASON"
+    description: "Think step-by-step before answering"
+
+# State Features
+state_features:
+  - name: "conversation_length"
+    dim: 1
+  - name: "user_sentiment"
+    dim: 1
+  - name: "query_complexity"
+    dim: 1
+  - name: "topic_embedding"
+    dim: 8
+  - name: "tools_available"
+    dim: 1
+  - name: "uncertainty_score"
+    dim: 1
+  - name: "frustration_level"
+    dim: 1
+  - name: "requires_code"
+    dim: 1
+  - name: "requires_math"
+    dim: 1
+
+# SLM Configuration
+slm:
+  provider: "ollama"  # Options: ollama, openai, anthropic, local
+  model: "phi3:mini"  # or mistral, llama3, gpt-4, etc.
+  base_url: "http://localhost:11434"
+  temperature: 0.7
+  max_tokens: 1024
+
+# Policy Rules
+policy:
+  safety_enabled: true
+  max_tool_calls_per_turn: 3
+  require_human_approval_for:
+    - "EXECUTE_CODE"
+    - "MODIFY_FILE"
+    - "EXTERNAL_API_CALL"
+  forbidden_topics: []
+
+# Logging
+logging:
+  level: "INFO"
+  save_interactions: true
+  log_file: "dheera/logs/dheera.log"
