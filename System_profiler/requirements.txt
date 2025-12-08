@@ -1,0 +1,11 @@
+# InferaGrid System Profiler - Dependencies
+
+# Required
+psutil>=5.9.0          # CPU, Memory, Disk, Network monitoring
+
+# Optional - For NVIDIA GPU detection
+GPUtil>=1.4.0          # Only works if you have NVIDIA GPU
+
+# Future dependencies (for full provider agent)
+# pynvml                # NVIDIA Management Library
+# py3nvml               # Python 3 bindings for NVML

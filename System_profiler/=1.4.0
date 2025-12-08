@@ -1,0 +1,8 @@
+Collecting GPUtil
+  Downloading GPUtil-1.4.0.tar.gz (5.5 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Installing collected packages: GPUtil
+  Running setup.py install for GPUtil: started
+  Running setup.py install for GPUtil: finished with status 'done'
+Successfully installed GPUtil-1.4.0
