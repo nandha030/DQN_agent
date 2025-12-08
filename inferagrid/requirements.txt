@@ -1,0 +1,26 @@
+# InferaGrid Provider Agent - Dependencies
+
+# ═══════════════════════════════════════════════════════════════════
+# REQUIRED
+# ═══════════════════════════════════════════════════════════════════
+psutil>=5.9.0          # CPU, Memory, Disk, Network monitoring
+
+# ═══════════════════════════════════════════════════════════════════
+# API SERVER
+# ═══════════════════════════════════════════════════════════════════
+fastapi>=0.104.0       # API framework
+uvicorn[standard]>=0.24.0  # ASGI server
+pydantic>=2.0.0        # Data validation
+
+# ═══════════════════════════════════════════════════════════════════
+# OPTIONAL - GPU SUPPORT
+# ═══════════════════════════════════════════════════════════════════
+GPUtil>=1.4.0          # NVIDIA GPU detection (only if you have NVIDIA)
+
+# ═══════════════════════════════════════════════════════════════════
+# FUTURE DEPENDENCIES (for production)
+# ═══════════════════════════════════════════════════════════════════
+# httpx                 # Async HTTP client for exchange communication
+# python-jose           # JWT token handling
+# cryptography          # Secure communication
+# prometheus-client     # Metrics export

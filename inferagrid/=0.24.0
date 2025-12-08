@@ -1,0 +1,26 @@
+Collecting uvicorn[standard]
+  Downloading uvicorn-0.38.0-py3-none-any.whl (68 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.1/68.1 kB 1.1 MB/s eta 0:00:00
+Collecting click>=7.0
+  Using cached click-8.3.1-py3-none-any.whl (108 kB)
+Requirement already satisfied: h11>=0.8 in /Users/nandhavignesh/triton/triton-client-env/lib/python3.11/site-packages (from uvicorn[standard]) (0.16.0)
+Collecting httptools>=0.6.3
+  Downloading httptools-0.7.1-cp311-cp311-macosx_10_9_universal2.whl (206 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 206.5/206.5 kB 2.6 MB/s eta 0:00:00
+Collecting python-dotenv>=0.13
+  Downloading python_dotenv-1.2.1-py3-none-any.whl (21 kB)
+Requirement already satisfied: pyyaml>=5.1 in /Users/nandhavignesh/triton/triton-client-env/lib/python3.11/site-packages (from uvicorn[standard]) (6.0.3)
+Collecting uvloop>=0.15.1
+  Downloading uvloop-0.22.1-cp311-cp311-macosx_10_9_x86_64.whl (748 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 748.7/748.7 kB 4.9 MB/s eta 0:00:00
+Collecting watchfiles>=0.13
+  Downloading watchfiles-1.1.1-cp311-cp311-macosx_10_12_x86_64.whl (406 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 406.5/406.5 kB 4.3 MB/s eta 0:00:00
+Collecting websockets>=10.4
+  Downloading websockets-15.0.1-cp311-cp311-macosx_10_9_x86_64.whl (173 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 173.1/173.1 kB 3.6 MB/s eta 0:00:00
+Requirement already satisfied: anyio>=3.0.0 in /Users/nandhavignesh/triton/triton-client-env/lib/python3.11/site-packages (from watchfiles>=0.13->uvicorn[standard]) (4.12.0)
+Requirement already satisfied: idna>=2.8 in /Users/nandhavignesh/triton/triton-client-env/lib/python3.11/site-packages (from anyio>=3.0.0->watchfiles>=0.13->uvicorn[standard]) (3.11)
+Requirement already satisfied: typing_extensions>=4.5 in /Users/nandhavignesh/triton/triton-client-env/lib/python3.11/site-packages (from anyio>=3.0.0->watchfiles>=0.13->uvicorn[standard]) (4.15.0)
+Installing collected packages: websockets, uvloop, python-dotenv, httptools, click, watchfiles, uvicorn
+Successfully installed click-8.3.1 httptools-0.7.1 python-dotenv-1.2.1 uvicorn-0.38.0 uvloop-0.22.1 watchfiles-1.1.1 websockets-15.0.1

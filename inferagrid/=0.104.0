@@ -1,0 +1,17 @@
+Collecting fastapi
+  Downloading fastapi-0.124.0-py3-none-any.whl (112 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 112.5/112.5 kB 1.7 MB/s eta 0:00:00
+Collecting starlette<0.51.0,>=0.40.0
+  Downloading starlette-0.50.0-py3-none-any.whl (74 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 74.0/74.0 kB 2.5 MB/s eta 0:00:00
+Requirement already satisfied: pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4 in /Users/nandhavignesh/triton/triton-client-env/lib/python3.11/site-packages (from fastapi) (2.12.5)
+Requirement already satisfied: typing-extensions>=4.8.0 in /Users/nandhavignesh/triton/triton-client-env/lib/python3.11/site-packages (from fastapi) (4.15.0)
+Collecting annotated-doc>=0.0.2
+  Downloading annotated_doc-0.0.4-py3-none-any.whl (5.3 kB)
+Requirement already satisfied: annotated-types>=0.6.0 in /Users/nandhavignesh/triton/triton-client-env/lib/python3.11/site-packages (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4->fastapi) (0.7.0)
+Requirement already satisfied: pydantic-core==2.41.5 in /Users/nandhavignesh/triton/triton-client-env/lib/python3.11/site-packages (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4->fastapi) (2.41.5)
+Requirement already satisfied: typing-inspection>=0.4.2 in /Users/nandhavignesh/triton/triton-client-env/lib/python3.11/site-packages (from pydantic!=1.8,!=1.8.1,!=2.0.0,!=2.0.1,!=2.1.0,<3.0.0,>=1.7.4->fastapi) (0.4.2)
+Requirement already satisfied: anyio<5,>=3.6.2 in /Users/nandhavignesh/triton/triton-client-env/lib/python3.11/site-packages (from starlette<0.51.0,>=0.40.0->fastapi) (4.12.0)
+Requirement already satisfied: idna>=2.8 in /Users/nandhavignesh/triton/triton-client-env/lib/python3.11/site-packages (from anyio<5,>=3.6.2->starlette<0.51.0,>=0.40.0->fastapi) (3.11)
+Installing collected packages: annotated-doc, starlette, fastapi
+Successfully installed annotated-doc-0.0.4 fastapi-0.124.0 starlette-0.50.0
