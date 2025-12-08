@@ -2,13 +2,12 @@
 """
 Dheera Tool Registry
 Registry for external tools and capabilities that Dheera can invoke.
-Updated with Web Search integration using ddgs package.
+Updated with Web Search integration.
 """
 
 import time
 import inspect
 import asyncio
-import re
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Callable, Any, Union
 from enum import Enum
@@ -19,11 +18,11 @@ class ToolCategory(Enum):
     """Categories of tools."""
     UTILITY = "utility"
     CODE = "code"
-    SEARCH = "search"
+    SEARCH = "search"      # Web search, fact-checking
     FILE = "file"
     API = "api"
     SYSTEM = "system"
-    VISION = "vision"
+    VISION = "vision"      # Image/video processing
     CUSTOM = "custom"
 
 
@@ -76,7 +75,7 @@ class Tool:
     requires_approval: bool = False
     enabled: bool = True
     is_async: bool = False
-    action_id: Optional[int] = None
+    action_id: Optional[int] = None  # Maps to DQN action space
     metadata: Dict[str, Any] = field(default_factory=dict)
     
     def to_dict(self) -> Dict[str, Any]:
@@ -108,7 +107,7 @@ class Tool:
 
 class WebSearchTool:
     """
-    Web Search capability using DuckDuckGo (ddgs package).
+    Web Search capability using DuckDuckGo.
     Provides search, news, and fact-checking functionality.
     """
     
@@ -120,6 +119,7 @@ class WebSearchTool:
         self.cache_timestamps: Dict[str, float] = {}
         self.search_history: List[dict] = []
         self.total_searches = 0
+        self._ddgs = None
     
     def _get_cached(self, query: str) -> Optional[dict]:
         """Get cached result if still valid."""
@@ -137,20 +137,8 @@ class WebSearchTool:
     def _set_cache(self, query: str, result: dict):
         """Cache a search result."""
         key = query.lower().strip()
-        self.cache[key] = result.copy()
+        self.cache[key] = result
         self.cache_timestamps[key] = time.time()
-    
-    def _get_ddgs(self):
-        """Get DDGS instance with fallback."""
-        try:
-            from ddgs import DDGS
-            return DDGS()
-        except ImportError:
-            try:
-                from duckduckgo_search import DDGS
-                return DDGS()
-            except ImportError:
-                return None
     
     def search(self, query: str, max_results: Optional[int] = None, use_cache: bool = True) -> dict:
         """
@@ -173,16 +161,9 @@ class WebSearchTool:
         results_limit = max_results or self.max_results
         
         try:
-            ddgs = self._get_ddgs()
-            if ddgs is None:
-                return {
-                    'query': query,
-                    'success': False,
-                    'error': 'Search package not installed. Run: pip install ddgs',
-                    'results': []
-                }
+            from duckduckgo_search import DDGS
             
-            with ddgs:
+            with DDGS() as ddgs:
                 results = list(ddgs.text(
                     query,
                     max_results=results_limit,
@@ -193,8 +174,8 @@ class WebSearchTool:
             for r in results:
                 formatted.append({
                     'title': r.get('title', ''),
-                    'url': r.get('href', r.get('link', '')),
-                    'snippet': r.get('body', r.get('snippet', '')),
+                    'url': r.get('href', ''),
+                    'snippet': r.get('body', ''),
                 })
             
             search_record = {
@@ -216,6 +197,13 @@ class WebSearchTool:
             
             return search_record
             
+        except ImportError:
+            return {
+                'query': query,
+                'success': False,
+                'error': 'duckduckgo-search not installed. Run: pip install duckduckgo-search',
+                'results': []
+            }
         except Exception as e:
             return {
                 'query': query,
@@ -231,11 +219,9 @@ class WebSearchTool:
         results_limit = max_results or self.max_results
         
         try:
-            ddgs = self._get_ddgs()
-            if ddgs is None:
-                return {'success': False, 'error': 'Search package not installed', 'results': []}
+            from duckduckgo_search import DDGS
             
-            with ddgs:
+            with DDGS() as ddgs:
                 results = list(ddgs.news(
                     query,
                     max_results=results_limit
@@ -245,8 +231,8 @@ class WebSearchTool:
             for r in results:
                 formatted.append({
                     'title': r.get('title', ''),
-                    'url': r.get('url', r.get('link', '')),
-                    'snippet': r.get('body', r.get('excerpt', '')),
+                    'url': r.get('url', ''),
+                    'snippet': r.get('body', ''),
                     'source': r.get('source', ''),
                     'date': r.get('date', '')
                 })
@@ -260,6 +246,8 @@ class WebSearchTool:
                 'type': 'news'
             }
             
+        except ImportError:
+            return {'success': False, 'error': 'duckduckgo-search not installed', 'results': []}
         except Exception as e:
             return {'success': False, 'error': str(e), 'results': [], 'type': 'news'}
     
@@ -285,9 +273,8 @@ class WebSearchTool:
         seen_urls = set()
         unique_results = []
         for r in all_results:
-            url = r.get('url', '')
-            if url and url not in seen_urls:
-                seen_urls.add(url)
+            if r['url'] not in seen_urls:
+                seen_urls.add(r['url'])
                 unique_results.append(r)
         
         return {
@@ -295,7 +282,6 @@ class WebSearchTool:
             'timestamp': time.time(),
             'evidence_count': len(unique_results),
             'evidence': unique_results[:self.max_results],
-            'results': unique_results[:self.max_results],  # Alias for compatibility
             'success': True
         }
     
@@ -303,6 +289,7 @@ class WebSearchTool:
         """Fetch and extract text from a URL."""
         try:
             import httpx
+            import re
             
             headers = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
@@ -328,8 +315,6 @@ class WebSearchTool:
                 'success': True
             }
             
-        except ImportError:
-            return {'url': url, 'success': False, 'error': 'httpx not installed. Run: pip install httpx'}
         except Exception as e:
             return {'url': url, 'success': False, 'error': str(e)}
     
@@ -341,16 +326,10 @@ class WebSearchTool:
         lines = [f"[Web Search: {query}]\n"]
         
         for i, r in enumerate(results[:5], 1):
-            title = r.get('title', 'No title')
+            lines.append(f"{i}. {r['title']}")
             snippet = r.get('snippet', '')[:200]
-            url = r.get('url', '')
-            
-            lines.append(f"{i}. {title}")
-            if snippet:
-                lines.append(f"   {snippet}...")
-            if url:
-                lines.append(f"   URL: {url}")
-            lines.append("")
+            lines.append(f"   {snippet}...")
+            lines.append(f"   URL: {r['url']}\n")
         
         return '\n'.join(lines)
     
@@ -361,11 +340,6 @@ class WebSearchTool:
             'cache_size': len(self.cache),
             'recent_queries': [h['query'] for h in self.search_history[-5:]]
         }
-    
-    def clear_cache(self):
-        """Clear the search cache."""
-        self.cache.clear()
-        self.cache_timestamps.clear()
 
 
 class ToolRegistry:
@@ -389,7 +363,7 @@ class ToolRegistry:
         self.config = config or {}
         self.tools: Dict[str, Tool] = {}
         self.usage_stats: Dict[str, Dict[str, Any]] = {}
-        self.action_mapping: Dict[int, str] = {}
+        self.action_mapping: Dict[int, str] = {}  # action_id -> tool_name
         
         # Initialize web search
         web_config = self.config.get('tools', {}).get('web_search', {})
@@ -742,11 +716,7 @@ class ToolRegistry:
         start_time = time.time()
         try:
             if tool.is_async:
-                try:
-                    loop = asyncio.get_event_loop()
-                except RuntimeError:
-                    loop = asyncio.new_event_loop()
-                    asyncio.set_event_loop(loop)
+                loop = asyncio.get_event_loop()
                 output = loop.run_until_complete(tool.function(**params))
             else:
                 output = tool.function(**params)
@@ -823,6 +793,7 @@ class ToolRegistry:
         # Handle web search specifically
         if tool_name in ('web_search', 'search_news'):
             query = context.get('query') or context.get('user_message', '')
+            # Clean query for search
             params['query'] = self._clean_search_query(query)
             if 'max_results' in context:
                 params['max_results'] = context['max_results']
@@ -934,20 +905,17 @@ class ToolRegistry:
             'search', 'find', 'look up', 'google', 'what is',
             'who is', 'latest', 'current', 'news', 'today',
             'recent', 'update', 'how to', 'where is', 'when did',
-            'price of', 'weather', 'score', 'result', 'happening',
-            'tell me about', 'what are', 'how much', 'how many'
+            'price of', 'weather', 'score', 'result', 'happening'
         ]
         
         return any(trigger in message_lower for trigger in search_triggers)
     
     def get_stats(self) -> Dict[str, Any]:
         """Get usage statistics for all tools."""
-        search_tools = [t for t in self.tools.values() if t.category == ToolCategory.SEARCH]
-        
         return {
             "total_tools": len(self.tools),
             "enabled_tools": len([t for t in self.tools.values() if t.enabled]),
-            "search_tools": len(search_tools),
+            "search_tools": len([t for t in self.tools.values() if t.category == ToolCategory.SEARCH]),
             "web_search_stats": self.web_search.get_stats(),
             "tool_stats": self.usage_stats,
             "action_mapping": self.action_mapping,
@@ -987,17 +955,14 @@ if __name__ == "__main__":
     
     print("\n3. Format JSON:")
     result = registry.execute("format_json", {"json_string": '{"name":"Dheera","version":"0.2.0"}'})
-    if result.success:
-        print(f"   Formatted:\n{result.output}")
-    else:
-        print(f"   Error: {result.error}")
+    print(f"   Formatted:\n{result.output}")
     
     # Test web search
     print("\n🔍 Testing Web Search Tools:")
     print("-" * 40)
     
     print("\n4. Web Search:")
-    result = registry.execute("web_search", {"query": "Python programming language"})
+    result = registry.execute("web_search", {"query": "Python programming"})
     if result.success:
         output = result.output
         print(f"   Found {output.get('result_count', 0)} results")
@@ -1022,8 +987,22 @@ if __name__ == "__main__":
     else:
         print(f"   Error: {result.error}")
     
+    # Test action ID execution
+    print("\n🎯 Testing DQN Action Mapping:")
+    print("-" * 40)
+    
+    print("\n7. Execute by Action ID (3 = SEARCH_WEB):")
+    result = registry.execute_by_action_id(3, {
+        'user_message': 'What is the latest version of Ollama?'
+    })
+    if result.success:
+        print(f"   Success! Query used: {result.output.get('query', 'N/A')}")
+        print(f"   Results: {result.output.get('result_count', 0)}")
+    else:
+        print(f"   Error: {result.error}")
+    
     # Test search trigger detection
-    print("\n7. Search Trigger Detection:")
+    print("\n8. Search Trigger Detection:")
     test_messages = [
         "What is the latest news about AI?",
         "Hello, how are you?",
@@ -1034,14 +1013,12 @@ if __name__ == "__main__":
     for msg in test_messages:
         should_search = registry.should_search(msg)
         icon = "🔍" if should_search else "💬"
-        print(f"   {icon} '{msg[:40]}' -> Search: {should_search}")
+        print(f"   {icon} '{msg[:40]}...' -> Search: {should_search}")
     
     # List all tools
     print("\n📋 Registered Tools:")
     print("-" * 40)
-    for tool in registry.list_tools():
-        cat_icon = "🔍" if tool.category == ToolCategory.SEARCH else "🔧"
-        print(f"   {cat_icon} {tool.name}: {tool.description[:40]}...")
+    print(registry.get_tools_description())
     
     # Stats
     print("\n📈 Usage Statistics:")
@@ -1050,6 +1027,7 @@ if __name__ == "__main__":
     print(f"   Total tools: {stats['total_tools']}")
     print(f"   Search tools: {stats['search_tools']}")
     print(f"   Web searches: {stats['web_search_stats']['total_searches']}")
+    print(f"   Action mapping: {stats['action_mapping']}")
     
     print("\n" + "=" * 60)
     print("✅ All tests completed!")

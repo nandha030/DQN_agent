@@ -1,55 +1,87 @@
-agent:
-  name: "Dheera"
-  version: "0.1.0"
+# Dheera Configuration - v0.2.0 with Web Search
 
+# DQN Brain Settings
 dqn:
   state_dim: 16
-  hidden_dim: 64
-  gamma: 0.99
-  lr: 0.001
+  hidden_dim: 128
+  learning_rate: 0.001
+  gamma: 0.95
+  epsilon_start: 1.0
+  epsilon_end: 0.1
+  epsilon_decay: 0.995
+  buffer_size: 10000
   batch_size: 32
-  buffer_capacity: 50000
-  epsilon_start: 0.8
-  epsilon_end: 0.05
-  epsilon_decay_steps: 200  # Much faster for testing!
   target_update_freq: 100
 
-curiosity:
-  enabled: true
-  coefficient: 0.1
-
-dopamine:
+# Reward Configuration
+rewards:
   positive_feedback_reward: 1.0
   negative_feedback_reward: -0.5
   neutral_reward: 0.0
+  tool_success_bonus: 0.3
+  search_relevance_bonus: 0.2
 
+# SLM Configuration
 slm:
   provider: "ollama"
-  model: "phi3:mini"
+  model: "phi3:latest"
   base_url: "http://localhost:11434"
-  temperature: 0.5  # Lower = more focused
-  max_tokens: 512   # Shorter responses
+  temperature: 0.5
+  max_tokens: 512
+  timeout: 30
 
+# Action Space (7 actions now)
 actions:
   - id: 0
-    name: "ASK_CLARIFYING_QUESTION"
-    description: "Ask user for more details"
+    name: "DIRECT_RESPONSE"
+    description: "Give a direct answer from knowledge"
   - id: 1
-    name: "PROVIDE_DETAILED_EXPLANATION"
-    description: "Give thorough response"
+    name: "CLARIFY_QUESTION"
+    description: "Ask user for more details"
   - id: 2
-    name: "GIVE_CONCISE_SUMMARY"
-    description: "Short, direct answer"
+    name: "USE_TOOL"
+    description: "Use a registered tool"
   - id: 3
-    name: "PROPOSE_STEP_BY_STEP_PLAN"
-    description: "Break down into steps"
+    name: "SEARCH_WEB"
+    description: "Search internet for information"
   - id: 4
-    name: "CALL_TOOL"
-    description: "Invoke external tool"
+    name: "BREAK_DOWN_TASK"
+    description: "Break complex task into steps"
   - id: 5
     name: "REFLECT_AND_REASON"
-    description: "Think step-by-step"
+    description: "Think step-by-step before responding"
+  - id: 6
+    name: "DEFER_OR_DECLINE"
+    description: "Politely decline or defer"
 
+# Policy Guard
 policy:
   safety_enabled: true
   max_tool_calls_per_turn: 3
+  blocked_patterns:
+    - "hack"
+    - "exploit"
+    - "malware"
+
+# Tools Configuration
+tools:
+  web_search:
+    enabled: true
+    max_results: 5
+    timeout: 10
+    cache_ttl: 300
+  vision:
+    enabled: true
+    model: "llava"
+
+# Memory Settings
+memory:
+  episodic_capacity: 1000
+  semantic_index: true
+  persistence_path: "./memory"
+
+# Learning Settings
+learning:
+  auto_save_interval: 50
+  checkpoint_path: "./checkpoints"
+  enable_curriculum: true
