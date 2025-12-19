@@ -1,0 +1,51 @@
+# Dheera v0.3.0 Requirements
+# धीर (Sanskrit): Courageous, Wise, Patient
+
+# ==================== Core Dependencies ====================
+numpy>=2.0
+torch>=2.0.0
+pyyaml>=6.0
+
+# ==================== NLP & Embeddings ====================
+sentence-transformers>=2.2.0
+# Optional: transformers>=4.30.0
+
+# ==================== Vector Database ====================
+chromadb>=0.4.0
+# Fallback: Uses numpy if chromadb not available
+
+# ==================== Web Search ====================
+requests>=2.28.0
+duckduckgo-search>=3.8.0
+beautifulsoup4>=4.12.0
+
+# ==================== Database ====================
+# SQLite3 is built into Python
+
+# ==================== Utilities ====================
+python-dateutil>=2.8.0
+tqdm>=4.65.0
+
+# ==================== Development ====================
+# pytest>=7.0.0
+# black>=23.0.0
+# flake8>=6.0.0
+
+# ==================== Optional: Voice Interface ====================
+# speechrecognition>=3.10.0
+# pyaudio>=0.2.13
+# pyttsx3>=2.90
+# gtts>=2.3.0
+
+# ==================== Optional: GPU Support ====================
+# Install PyTorch with CUDA:
+# pip install torch --index-url https://download.pytorch.org/whl/cu118
+
+# ==================== Notes ====================
+# 1. Ollama must be installed separately: https://ollama.ai
+#    Run: ollama pull phi3:mini
+#
+# 2. For ChromaDB persistence, ensure write permissions
+#
+# 3. sentence-transformers will download model on first use
+#    (~90MB for all-MiniLM-L6-v2)
