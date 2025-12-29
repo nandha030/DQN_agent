@@ -7,11 +7,11 @@ version: "0.3.1"
 # ==================== SLM Configuration ====================
 slm:
   provider: "ollama"                 # ollama, openai, anthropic, echo
-  model: "phi3:mini"
+  model: "llama3.2:latest"
   base_url: "http://localhost:11434"
-  timeout: 15                        # ⚡ REDUCED from 60 (faster timeout = faster error detection)
+  timeout: 30                        # ⚡ Auto-configured based on hardware
   temperature: 0.7
-  max_tokens: 256                    # ⚡ REDUCED from 512 (faster generation, shorter responses)
+  max_tokens: 256                    # ⚡ Auto-configured based on hardware
 
   fallback_provider: "echo"
   retry_attempts: 1                  # ⚡ REDUCED from 2 (faster failure recovery)
@@ -24,7 +24,7 @@ dqn:
 
   gamma: 0.99
   lr: 0.0001
-  batch_size: 32                     # ⚡ REDUCED from 64 (faster training step)
+  batch_size: 16                     # ⚡ Auto-configured based on hardware
 
   n_step: 3
   atom_size: 51
@@ -32,7 +32,7 @@ dqn:
   v_max: 10
 
   target_update_freq: 1000
-  train_every: 10                    # ⚡ INCREASED from 4 (train less frequently = faster responses)
+  train_every: 12                    # ⚡ Auto-configured based on hardware
   min_experiences: 50                # ⚡ REDUCED from 100 (start training sooner)
 
   curiosity_coef: 0.1
@@ -41,7 +41,7 @@ dqn:
 # Inspired by SpikingBrain (Chinese Academy of Sciences, 2024)
 # Achieves 69%+ sparsity and 97% energy reduction vs traditional networks
 spiking:
-  enabled: true                  # Enable spiking neural networks
+  enabled: true                  # Re-enabled for testing
 
   # LIF neuron parameters
   tau_mem: 10.0                  # Membrane time constant (10 = moderate memory)
@@ -71,7 +71,7 @@ embedding:
 rag:
   persist_directory: "./chroma_db"
 
-  default_n_results: 3               # ⚡ REDUCED from 5 (fewer results = faster retrieval)
+  default_n_results: 3               # ⚡ Auto-configured based on hardware
   min_score: 0.5                     # ⚡ INCREASED from 0.3 (higher threshold = faster filtering)
 
   collections:
@@ -79,7 +79,7 @@ rag:
     # - knowledge                    # ⚡ Comment out if not using knowledge base
     # - search_cache                 # ⚡ Comment out if not using search
 
-  max_context_tokens: 300            # ⚡ REDUCED from 500 (less context = faster processing)
+  max_context_tokens: 300            # ⚡ Auto-configured based on hardware
   max_context_chars: 1200            # ⚡ REDUCED from 2000 (less text to embed/process)
 
 # ==================== RLHF Configuration ====================
@@ -168,7 +168,7 @@ tools:
 
   code_executor:
     enabled: false          # Disabled by default for safety
-    timeout: 10
+  timeout: 30                        # ⚡ Auto-configured based on hardware
 
   web_search:
     enabled: true

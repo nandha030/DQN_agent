@@ -331,7 +331,7 @@ class SpikingRainbowDQNAgent:
         self.total_intrinsic_reward = 0.0
         self.total_sparsity = deque(maxlen=100)  # Track recent sparsity
 
-    def select_action(self, state: np.ndarray, training: bool = True) -> int:
+    def select_action(self, state: np.ndarray, training: bool = True):
         """
         Select action using epsilon-greedy (or Noisy networks if enabled).
 
@@ -340,7 +340,7 @@ class SpikingRainbowDQNAgent:
             training: Training mode (enables exploration)
 
         Returns:
-            action: Selected action index
+            Tuple[int, Dict]: (action, info_dict) - matches RainbowDQNAgent interface
         """
         self.online_net.eval()  # Disable dropout, etc.
 
@@ -348,13 +348,46 @@ class SpikingRainbowDQNAgent:
             state_tensor = torch.FloatTensor(state).unsqueeze(0).to(self.device)
             q_values = self.online_net.get_q_values(state_tensor, reset_state=False)
             action = q_values.argmax(dim=1).item()
+            max_q = q_values.max().item()
 
         self.action_counts[action] += 1
 
         if training:
             self.online_net.train()
 
-        return action
+        # Return tuple to match RainbowDQNAgent interface
+        info = {
+            "q_value": float(max_q),
+            "spiking": self.use_spiking,
+        }
+        return action, info
+
+    def store_transition(
+        self,
+        state: np.ndarray,
+        action: int,
+        reward: float,
+        next_state: np.ndarray,
+        done: bool,
+        episode_id: Optional[str] = None,
+    ) -> float:
+        """
+        Store transition and compute intrinsic reward.
+
+        Returns:
+            Total reward (extrinsic + intrinsic)
+        """
+        # Compute intrinsic reward
+        intrinsic_reward = self.curiosity.compute_intrinsic_reward(
+            torch.FloatTensor(next_state).to(self.device)
+        )
+        self.total_intrinsic_reward += intrinsic_reward
+        total_reward = reward + self.curiosity_coef * intrinsic_reward
+
+        # Update the network
+        self.update(state, action, reward, next_state, done)
+
+        return float(total_reward)
 
     def update(
         self,
@@ -425,11 +458,11 @@ class SpikingRainbowDQNAgent:
     def get_stats(self) -> Dict[str, Any]:
         """Get agent statistics including sparsity metrics"""
         stats = {
-            "update_count": self.update_count,
+            "update_count": int(self.update_count),
             "action_distribution": {
-                name: count for name, count in zip(self.ACTION_NAMES, self.action_counts)
+                name: int(count) for name, count in zip(self.ACTION_NAMES, self.action_counts)
             },
-            "total_intrinsic_reward": self.total_intrinsic_reward,
+            "total_intrinsic_reward": float(self.total_intrinsic_reward),
         }
 
         # Add spiking-specific stats
@@ -437,10 +470,11 @@ class SpikingRainbowDQNAgent:
             network_stats = self.online_net.get_sparsity_stats()
             stats.update({
                 "spiking_enabled": True,
-                "overall_sparsity": network_stats.get("overall_sparsity", 0.0),
-                "energy_savings_estimate": network_stats.get("energy_savings", 0.0),
-                "avg_recent_sparsity": np.mean(self.total_sparsity) if self.total_sparsity else 0.0,
-                "layer_sparsity": network_stats.get("layer_stats", {}),
+                "overall_sparsity": float(network_stats.get("overall_sparsity", 0.0)),
+                "energy_savings_estimate": float(network_stats.get("energy_savings", 0.0)),
+                "avg_recent_sparsity": float(np.mean(self.total_sparsity)) if self.total_sparsity else 0.0,
+                "layer_sparsity": {k: float(v) if isinstance(v, (np.floating, np.integer)) else v
+                                   for k, v in network_stats.get("layer_stats", {}).items()},
             })
         else:
             stats["spiking_enabled"] = False

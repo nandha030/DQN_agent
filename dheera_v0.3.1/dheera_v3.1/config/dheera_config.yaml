@@ -1,0 +1,197 @@
+# ===================== config/dheera_config.yaml =====================
+# Dheera v0.3.1 Configuration (CLEAN + CONFIG-FIRST)
+# Keep ONLY Dheera runtime config here. Identity lives in identity.yaml.
+
+version: "0.3.1"
+
+# ==================== SLM Configuration ====================
+slm:
+  provider: "ollama"                 # ollama, openai, anthropic, echo
+  model: "phi3:mini"
+  base_url: "http://localhost:11434"
+  timeout: 60
+  temperature: 0.7
+  max_tokens: 512
+
+  fallback_provider: "echo"
+  retry_attempts: 2
+
+# ==================== Rainbow DQN Configuration ====================
+dqn:
+  state_dim: 64
+  action_dim: 8
+  hidden_dim: 128
+
+  gamma: 0.99
+  lr: 0.0001
+  batch_size: 64
+
+  n_step: 3
+  atom_size: 51
+  v_min: -10
+  v_max: 10
+
+  target_update_freq: 1000
+  train_every: 4
+  min_experiences: 100
+
+  curiosity_coef: 0.1
+
+# ==================== Embedding Configuration ====================
+embedding:
+  model: "all-MiniLM-L6-v2"
+  dimension: 384
+  use_gpu: false
+
+# ==================== RAG Configuration ====================
+rag:
+  persist_directory: "./chroma_db"
+
+  default_n_results: 5
+  min_score: 0.3
+
+  collections:
+    - conversations
+    - knowledge
+    - search_cache
+
+  max_context_tokens: 500
+  max_context_chars: 2000
+
+# ==================== RLHF Configuration ====================
+rlhf:
+  reward_hidden_dim: 256
+  reward_lr: 0.0001
+
+  min_preferences: 10
+  train_every_n_feedback: 5
+
+  blend_factor: 0.3
+
+  feedback_map:
+    "++": 1.0
+    "+": 0.5
+    "-": -0.5
+    "--": -1.0
+
+# ==================== Reward Configuration ====================
+rewards:
+  base_reward: 0.0
+  success_bonus: 0.1
+  search_bonus: 0.2
+  tool_bonus: 0.2
+  clarification_penalty: -0.1
+
+  helpful_bonus: 0.3
+  accurate_bonus: 0.2
+
+  timeout_penalty: -0.3
+  error_penalty: -0.2
+  repetition_penalty: -0.1
+
+# ==================== Database Configuration ====================
+database:
+  path: "dheera.db"
+
+  max_experiences: 100000
+  experience_retention_days: 30
+
+  search_cache_ttl: 3600   # seconds
+
+# ==================== Policy Configuration ====================
+policy:
+  enable_content_filter: true
+  enable_pii_filter: true
+  rate_limit_per_minute: 30
+
+  max_message_length: 10000
+  max_response_length: 4000
+
+# ==================== Cognitive Configuration ====================
+cognitive:
+  intent_confidence_threshold: 0.5
+
+  max_entities: 20
+  max_history_turns: 10
+
+  max_memory_items: 50
+  memory_decay_rate: 0.95
+
+# ==================== Logging Configuration ====================
+logging:
+  level: "INFO"            # DEBUG, INFO, WARNING, ERROR
+  file: "logs/dheera.log"
+  console: true
+
+  log_turns: true
+  log_rewards: true
+  log_actions: true
+  log_training: false
+
+# ==================== Checkpoints ====================
+checkpoints:
+  directory: "./checkpoints"
+  save_every_episodes: 10
+  save_every_steps: 1000
+  max_checkpoints: 5
+
+# ==================== Tools Configuration ====================
+tools:
+  enabled: true
+
+  calculator:
+    enabled: true
+
+  code_executor:
+    enabled: false          # Disabled by default for safety
+    timeout: 10
+
+  web_search:
+    enabled: true
+    provider: "duckduckgo"  # duckduckgo, google, bing
+    max_results: 5
+
+# ==================== Web Search (for later real integration) ====================
+web_search:
+  enabled: true
+  provider: "duckduckgo"
+  max_results: 5
+  cache_ttl: 3600
+
+# ==================== RSI (Self-Improvement) ====================
+rsi:
+  enabled: true
+  mode: "always"            # always | complex_only
+  max_self_improve_steps: 1
+
+  # Memory context appended to rag_context (optional)
+  memory_context_enabled: true
+  memory_context_chars: 800
+
+  # RSI logs (separate from main logs)
+  log_enabled: true
+  log_dir: "logs/rsi"
+
+  # Guardrails
+  allow_auto_code_changes: false   # keep false
+  allow_auto_model_download: false # keep false
+  allow_internet_training: false   # keep false (until you implement safely)
+
+# ==================== AutoCritic ====================
+auto_critic:
+  enabled: true
+  min_score_threshold: 0.6
+  max_failures_to_flag: 3
+
+# ==================== Planner ====================
+planner:
+  enabled: true
+  max_steps: 6
+  prefer_search_when_needed: true
+  prefer_rag: true
+
+# ==================== Goal Evaluator ====================
+goal_evaluator:
+  enabled: true
+  risk_threshold: 0.7
+  default_requires_search: false

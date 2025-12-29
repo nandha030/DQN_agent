@@ -215,6 +215,7 @@ Be grounded in the provided context and analysis.""",
         tool_output: Optional[str] = None,
         cognitive_analysis: Optional[Dict] = None,
         plan: Optional[List[Dict[str, Any]]] = None,  # NEW (optional)
+        custom_system_prompt: Optional[str] = None,  # User-defined system prompt
     ) -> ExecutionResult:
         """
         Execute an action with robustness and identity enforcement.
@@ -224,7 +225,13 @@ Be grounded in the provided context and analysis.""",
         action_id = max(0, min(7, int(action_id)))
         action_name = self.ACTION_NAMES[action_id]
 
-        system_prompt = self._build_system_prompt(action_id, rag_context)
+        # Build system prompt - prepend custom prompt if provided
+        base_system_prompt = self._build_system_prompt(action_id, rag_context)
+        if custom_system_prompt:
+            system_prompt = f"{custom_system_prompt}\n\n{base_system_prompt}"
+        else:
+            system_prompt = base_system_prompt
+
         user_prompt = self._build_user_prompt(
             action_id=action_id,
             user_message=user_message,

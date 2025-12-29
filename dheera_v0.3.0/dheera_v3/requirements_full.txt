@@ -1,0 +1,96 @@
+# ============================================================================
+# Dheera v0.3.0 - Full Requirements (All Features)
+# ============================================================================
+
+# Core Deep Learning
+torch>=2.0.0
+numpy>=1.24.0
+scipy>=1.11.0
+
+# Vector Databases
+chromadb>=0.4.0
+pymilvus>=2.3.0
+
+# Graph Database
+neo4j>=5.14.0
+py2neo>=2021.2.3
+
+# Time-Series Database
+psycopg2-binary>=2.9.0
+
+# Cache & Memory
+redis>=5.0.0
+hiredis>=2.2.0
+
+# LLM & Embeddings
+sentence-transformers>=2.2.0
+transformers>=4.35.0
+tokenizers>=0.15.0
+openai>=1.3.0
+anthropic>=0.7.0
+
+# API & Web
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+websockets>=12.0
+httpx>=0.25.0
+aiohttp>=3.9.0
+requests>=2.31.0
+
+# Database & ORM
+sqlalchemy>=2.0.0
+alembic>=1.12.0
+databases>=0.8.0
+
+# Document Processing
+PyPDF2>=3.0.0
+python-docx>=1.1.0
+python-pptx>=0.6.23
+openpyxl>=3.1.0
+pandas>=2.1.0
+Pillow>=10.1.0
+pytesseract>=0.3.10
+
+# GUI & Visualization
+streamlit>=1.28.0
+plotly>=5.18.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
+networkx>=3.2.0
+pyvis>=0.3.2
+
+# Configuration & Utils
+pyyaml>=6.0
+python-dotenv>=1.0.0
+click>=8.1.7
+rich>=13.7.0
+tqdm>=4.66.0
+
+# Logging & Monitoring
+loguru>=0.7.2
+prometheus-client>=0.19.0
+psutil>=5.9.6
+
+# Testing & Quality
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.7.0
+
+# Security
+cryptography>=41.0.0
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+
+# Background Tasks
+celery>=5.3.0
+
+# Meta-Learning (Phase 2 - Future)
+# learn2learn>=0.2.0
+
+# Neuromorphic (Phase 3 - Future)
+# snntorch>=0.7.0

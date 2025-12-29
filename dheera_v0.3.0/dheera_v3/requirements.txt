@@ -25,6 +25,17 @@ requests>=2.31.0
 # openai>=1.0.0
 # anthropic>=0.3.0
 
+# GUI & API (NEW)
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+websockets>=12.0
+python-multipart>=0.0.6
+streamlit>=1.28.0
+plotly>=5.17.0
+
+# Optional: LLM providers
+# litellm>=1.0.0   # Unified interface for 100+ LLMs
+
 # Development & Testing (optional)
 # pytest>=7.4.0
 # pytest-cov>=4.1.0

@@ -1,6 +1,9 @@
 {
   "nudges": {},
-  "failure_counts": {},
+  "failure_counts": {
+    "search_used_but_not_referenced": 5,
+    "no_structure_for_steps": 1
+  },
   "low_score_streak": 0,
-  "updated_ts_ms": 1766659531574
+  "updated_ts_ms": 1766694421400
 }
